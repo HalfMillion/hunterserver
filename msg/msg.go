@@ -5,13 +5,10 @@ import (
 )
 
 // Processor 使用默认的Protobuf消息处理器
-var Processor protobuf.Processor
+var (
+	Processor = protobuf.NewProcessor()
+)
 
 func init() {
-	// json.NewProcessor
-}
-
-// Heartbeat 心跳处理
-type Heartbeat struct {
-	Name string
+	Processor.Register(&Heartbeat{})
 }

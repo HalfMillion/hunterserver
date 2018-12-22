@@ -18,6 +18,8 @@ func handler(m, h interface{}) {
 }
 
 func handleHeartbeat(args []interface{}) {
+	log.Debug("收到消息")
+
 	// 收到的 Heartbeat 消息
 	m := args[0].(*msg.Heartbeat)
 	// 消息的发送者
@@ -31,3 +33,14 @@ func handleHeartbeat(args []interface{}) {
 		Name: "Gotcha!",
 	})
 }
+
+/*
+   序号 字节  字节数 类型     意义     描述
+    0  0000    4   Int     size    包大小 后接12个字节
+    4  00      2   Short   TP
+    6  0       1   Byte    1
+    7  00      2   Short   gameID
+    9  0000    4   Int     cmd
+    13 00      2   Short   subCmd
+    15 0       1   Byte    0
+*/
